@@ -1,5 +1,8 @@
-<script>
-  import Header from "./components/Header.svelte";
+<script lang="ts">
+  import Header from "./layout/Header.svelte";
+	import Footer from "./layout/Footer.svelte";
+	import Textarea from "./components/Textarea.svelte";
+import CopyButton from "./components/CopyButton.svelte";
 
 	let rawValue = `- The first cool thing to do\n- The second even cooler thing\n- The third mediocre one`;
 
@@ -38,16 +41,10 @@
 
 <Header />
 
-<div class="flex flex-1 pb-10">
+<main class="flex flex-1 p-8">
 	<div class="container flex justify-center items-center">
 		<div class="flex md:flex-row flex-col items-center md:space-x-10 md:space-y-0 space-y-10">
-			<textarea
-				name="raw-list"
-				id="raw-list"
-				class="resize-none outline-none border-2 border-solid border-black p-3 h-auto md:w-80 w-full bg-white dark:bg-neutral-900 dark:border-white"
-				rows="16"
-				bind:value={rawValue}
-			/>
+			<Textarea bind:value={rawValue} name="raw-list" />
 
 			<div class="md:w-24 p-1 space-y-3">
 				{#each groupedEmojis as group}
@@ -60,8 +57,8 @@
 									for={emoji}
 									class="flex justify-center items-center p-0.5 border-2 border-solid rounded cursor-pointer"
 									class:border-transparent={emoji !== selectedEmoji}
-									class:border-black={emoji === selectedEmoji}
-									class:dark:border-white={emoji === selectedEmoji}
+									class:border-neutral-300={emoji === selectedEmoji}
+									class:dark:border-neutral-400={emoji === selectedEmoji}
 								>
 									<input
 										type="radio"
@@ -81,14 +78,13 @@
 				{/each}
 			</div>
 
-			<textarea
-				name="bullet-list"
-				id="bullet-list"
-				class="resize-none outline-none border-2 border-solid border-black p-3 h-auto md:w-80 w-full bg-white dark:bg-neutral-900 dark:border-white"
-				rows="16"
-        readonly
-				bind:value={listifyValue}
-			/>
+			<div class="relative md:w-80 w-full">
+				<CopyButton value={listifyValue} className="absolute top-0 right-0" />
+
+				<Textarea value={listifyValue} name="bullet-list" readonly={true} />
+			</div>
 		</div>
 	</div>
-</div>
+</main>
+
+<Footer />
