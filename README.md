@@ -2,4 +2,4 @@
 
 The project contains code for micro web app, that allows to replace bullets with emojis in bullet lists.
 
-<img src="https://raw.githubusercontent.com/fromaline/deep-dive-into-react-codebase/master/src/assets/screenshot.png" alt="deep-dive-into-react-codebase series logo" width="100%">
+<img src="https://raw.githubusercontent.com/fromaline/emojify-bullet-list/master/src/assets/screenshot.png" alt="screenshot of emojify bullet list web app" width="100%">
